@@ -4,29 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabul App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f5;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            font-size: 1.2em;
-            color: #555;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <div>
+    <header>
         <h1>Welcome to Tabul App!</h1>
-        <p>If you’re seeing this message, the site is successfully updated and hosted on GitHub Pages!</p>
+    </header>
+    <div class="container">
+        <h2>Timeline – Voidboard</h2>
+        <div class="timeline" id="timeline">
+            <!-- Sample Events -->
+            <div class="event future" style="top: 50px; left: 200px;">
+                Future Event 1
+            </div>
+            <div class="event past" style="bottom: 50px; left: 400px;">
+                Past Event 1
+            </div>
+            <!-- More events can be added dynamically -->
+        </div>
+        <button id="addEventButton" class="button">Add Event</button>
     </div>
+
+    <script src="src/index.js"></script>
 </body>
 </html>
