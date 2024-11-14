@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/tabul/static/css/main.0a17eb28.css",
+    "main.js": "/tabul/static/js/main.6f73a2a8.js",
+    "index.html": "/tabul/index.html",
+    "main.0a17eb28.css.map": "/tabul/static/css/main.0a17eb28.css.map",
+    "main.6f73a2a8.js.map": "/tabul/static/js/main.6f73a2a8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0a17eb28.css",
+    "static/js/main.6f73a2a8.js"
+  ]
+}
