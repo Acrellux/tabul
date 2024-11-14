@@ -1,0 +1,67 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0e1b7;  /* Light yellow */
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    background-color: #9e9e9e;  /* Gray (slightly brownish) */
+    padding: 20px;
+}
+
+h1 {
+    color: #00bcd4; /* Cyan */
+}
+
+#timeline-container, #voidboard-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.timeline {
+    width: 100%;
+    height: 300px;
+    background-color: #00bcd4;  /* Cyan */
+    position: relative;
+    overflow-x: scroll;
+}
+
+.voidboard {
+    width: 100%;
+    height: 500px;
+    background-color: #f5f5f5;
+    border: 1px dashed #ccc;
+}
+
+.sticky-note {
+    width: 150px;
+    height: 150px;
+    background-color: #f5a623; /* Light red */
+    border: 1px solid #ccc;
+    padding: 10px;
+    position: absolute;
+    cursor: move;
+}
+
+/* Styling for the events in the timeline */
+.event {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    padding: 5px;
+    margin: 10px;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+}
+
+.event h3, .event p {
+    margin: 0;
+    font-size: 12px;
+}
