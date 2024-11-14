@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/tabul/static/css/main.e34cf727.css",
-    "main.js": "/tabul/static/js/main.743dd7d6.js",
+    "main.js": "/tabul/static/js/main.43febce8.js",
     "index.html": "/tabul/index.html",
     "main.e34cf727.css.map": "/tabul/static/css/main.e34cf727.css.map",
-    "main.743dd7d6.js.map": "/tabul/static/js/main.743dd7d6.js.map"
+    "main.43febce8.js.map": "/tabul/static/js/main.43febce8.js.map"
   },
   "entrypoints": [
     "static/css/main.e34cf727.css",
-    "static/js/main.743dd7d6.js"
+    "static/js/main.43febce8.js"
   ]
 }
