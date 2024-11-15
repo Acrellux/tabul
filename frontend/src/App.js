@@ -1,59 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/style.css";
 
-const App = () => {
-  const [gridOffsetX, setGridOffsetX] = useState(0);
+function App() {
+  const [offsetX, setOffsetX] = useState(0); // Track horizontal offset
   const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
+  const [startX, setStartX] = useState(0); // Start position of the drag
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setStartX(e.clientX);
   };
 
-  const handleMouseMove = (e) => {
-    if (isDragging) {
-      const deltaX = e.clientX - startX;
-      setGridOffsetX((prevOffset) => prevOffset + deltaX);
-      setStartX(e.clientX);
-    }
-  };
-
   const handleMouseUp = () => {
     setIsDragging(false);
-    // Reset to y = 0 if the grid is released
-    setGridOffsetX((prevOffset) => prevOffset);
+    // Reset the y-axis
+    document.documentElement.style.setProperty("--y-offset", "0px");
   };
 
-  return (
-    <div>
-      {/* Title */}
-      <header className="hero is-primary">
-        <div className="hero-body has-text-centered">
-          <h1 className="title">tabul.app</h1>
-        </div>
-      </header>
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - startX; // Horizontal movement
+    setOffsetX((prev) => prev + deltaX);
+    setStartX(e.clientX);
 
-      {/* Grid Container */}
-      <main
-        className="grid-container"
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp} // Handle mouse leaving window
-      >
-        {/* Grid */}
-        <div
-          className="grid"
-          style={{ transform: `translateX(${gridOffsetX}px)` }}
-        >
-          {Array.from({ length: 100 }).map((_, i) => (
-            <div className="grid-cell" key={i}></div>
-          ))}
-        </div>
-      </main>
+    // Reset y-axis offset
+    document.documentElement.style.setProperty("--y-offset", "0px");
+  };
+
+  useEffect(() => {
+    // Apply the horizontal offset dynamically
+    document.documentElement.style.setProperty("--x-offset", `${offsetX}px`);
+  }, [offsetX]);
+
+  return (
+    <div
+      className="container"
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseMove={handleMouseMove}
+    >
+      <h1 className="title">tabul.app</h1>
+      <div className="grid-container">
+        <div className="grid"></div>
+      </div>
     </div>
   );
-};
+}
 
 export default App;
