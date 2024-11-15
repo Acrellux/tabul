@@ -1,69 +1,40 @@
-import React, { useState } from "react";
-import "./styles/style.css";
+import React from "react";
 
-function App() {
-  const [tasks, setTasks] = useState([]);
-  const [taskDeath, setTaskDeath] = useState(false);
-
-  const handleAddTask = () => {
-    const newTask = {
-      id: tasks.length + 1,
-      name: "New Task",
-      time: new Date().getTime(),
-    };
-    setTasks([...tasks, newTask]);
-  };
-
-  const handleTaskDeath = () => {
-    if (tasks.length > 0) {
-      setTaskDeath(true);
-      setTimeout(() => setTaskDeath(false), 3000); // Task Death message for 3 seconds
-    }
-  };
-
+const App = () => {
   return (
-    <div>
-      <header>
-        Tabul App
+    <div className="container is-fluid">
+      <header className="hero is-primary">
+        <div className="hero-body">
+          <p className="title">
+            Tabul - Your Infinite Organizer
+          </p>
+          <p className="subtitle">
+            Organize tasks, schedule events, and stay on top of your game.
+          </p>
+        </div>
       </header>
-      <div className="timeline">
-        {tasks.map((task) => (
-          <div
-            key={task.id}
-            className={`event ${task.time < Date.now() ? "past-event" : "future-event"}`}
-            style={{ left: `${task.time % 100}%` }}
-          >
-            {task.name}
+
+      <section className="section">
+        <div className="columns">
+          <div className="column">
+            <button className="button is-info">Add Event</button>
           </div>
-        ))}
-        <div className="future-line"></div>
-      </div>
-
-      <div className="voidboard">
-        <div
-          className="sticky-note"
-          style={{ top: "50px", left: "100px" }}
-        >
-          Sticky Note 1
+          <div className="column">
+            <button className="button is-warning">Create Sticky Note</button>
+          </div>
+          <div className="column">
+            <button className="button is-danger">Taskdeath Mode</button>
+          </div>
         </div>
-        <div
-          className="sticky-note"
-          style={{ top: "200px", left: "300px" }}
-        >
-          Sticky Note 2
-        </div>
-      </div>
+      </section>
 
-      <button onClick={handleAddTask}>Add Task</button>
-      <button onClick={handleTaskDeath}>Taskdeath</button>
-
-      {taskDeath && (
-        <div className="task-death-message">
-          Task Death Activated! All events for today are deleted!
+      <footer className="footer">
+        <div className="content has-text-centered">
+          <p>© 2024 Tabul. All rights reserved.</p>
         </div>
-      )}
+      </footer>
     </div>
   );
-}
+};
 
 export default App;
