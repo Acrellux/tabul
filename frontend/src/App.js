@@ -31,9 +31,12 @@ function App() {
     const deltaX = e.clientX - startX; // Horizontal movement
     const deltaY = e.clientY - startY; // Vertical movement
 
-    // Move the camera (the grid) horizontally when dragging
+    // Move the camera (the grid) horizontally and vertically when dragging
     setCameraX((prev) => prev + deltaX);
     setCameraY((prev) => prev + deltaY); // Move the timeline vertically with the mouse
+
+    // Move the grid horizontally as well
+    setGridX((prev) => prev + deltaX); // Move the grid with mouse drag on X axis
 
     setStartX(e.clientX); // Update the start position for x
     setStartY(e.clientY); // Update the start position for y
@@ -46,14 +49,14 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       // Slowly move the grid to the left
-      setGridX((prev) => prev - 0.5);
+      setGridX((prev) => prev - 0.5); // Move grid left by 0.5 pixels every second
     }, 1000); // Update every second
 
     return () => clearInterval(interval); // Cleanup on component unmount
   }, []);
 
   useEffect(() => {
-    // Apply the horizontal camera offset dynamically for the grid
+    // Apply the horizontal and vertical camera offset dynamically for the grid
     document.documentElement.style.setProperty("--camera-x", `${cameraX}px`);
     document.documentElement.style.setProperty("--camera-y", `${cameraY}px`);
   }, [cameraX, cameraY]);
@@ -70,7 +73,7 @@ function App() {
         <div
           className="grid"
           style={{
-            transform: `translateX(${gridX}px)`, // Move the grid based on cameraX
+            transform: `translateX(${gridX}px) translateY(${cameraY}px)`, // Move the grid with both X and Y
           }}
         ></div>
 
