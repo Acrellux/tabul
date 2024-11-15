@@ -7,8 +7,8 @@ body, html {
 }
 
 :root {
-  --x-offset: 0px; /* Horizontal offset */
-  --y-offset: 0px; /* Vertical offset */
+  --camera-x: 0px; /* Camera horizontal offset */
+  --camera-y: 0px; /* Camera vertical offset */
 }
 
 /* Container Styling */
@@ -52,7 +52,7 @@ body, html {
   background-color: #f0f0f0; /* Grayish background */
   background-image: linear-gradient(to right, #d3d3d3 1px, transparent 1px),
     linear-gradient(to bottom, #d3d3d3 1px, transparent 1px);
-  transform: translateX(var(--x-offset)) translateY(var(--y-offset));
+  transform: translateX(var(--camera-x)) translateY(var(--camera-y));
 }
 
 /* Timeline Styling */

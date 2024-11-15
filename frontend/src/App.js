@@ -2,15 +2,18 @@ import React, { useState, useEffect } from "react";
 import "./styles/style.css";
 
 function App() {
-  const [offsetX, setOffsetX] = useState(0); // Track horizontal offset
-  const [offsetY, setOffsetY] = useState(0); // Track vertical offset
+  const [cameraX, setCameraX] = useState(0); // Camera horizontal position
+  const [cameraY, setCameraY] = useState(0); // Camera vertical position
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0); // Start position of the drag (x)
   const [startY, setStartY] = useState(0); // Start position of the drag (y)
 
   // For Timeline
   const [time, setTime] = useState(Date.now()); // Start the time from current date
-  const [timelineOffset, setTimelineOffset] = useState(0); // Track timeline movement
+  const [timelineY, setTimelineY] = useState(0); // Track vertical timeline position
+
+  // For the grid's leftward movement (simulating time passing)
+  const [gridX, setGridX] = useState(0);
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -20,8 +23,6 @@ function App() {
 
   const handleMouseUp = () => {
     setIsDragging(false);
-    // Reset y-axis to 0 after drag
-    document.documentElement.style.setProperty("--y-offset", `${offsetY}px`);
   };
 
   const handleMouseMove = (e) => {
@@ -30,28 +31,31 @@ function App() {
     const deltaX = e.clientX - startX; // Horizontal movement
     const deltaY = e.clientY - startY; // Vertical movement
 
-    setOffsetX((prev) => prev + deltaX); // Update horizontal offset
-    setOffsetY((prev) => prev + deltaY); // Update vertical offset
+    // Move the camera (the grid) horizontally
+    setCameraX((prev) => prev + deltaX);
+    setCameraY((prev) => prev + deltaY); // Move the timeline vertically with the mouse
 
     setStartX(e.clientX); // Update the start position for x
     setStartY(e.clientY); // Update the start position for y
+
+    // Update the timeline's vertical position based on mouse drag (y movement)
+    setTimelineY(cameraY + deltaY);
   };
 
-  // Update the timeline every second to simulate time passing
+  // Update the grid movement (time passing) every second
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime(Date.now());
-      setTimelineOffset((prev) => prev - 0.5); // Slowly move the timeline left
+      setGridX((prev) => prev - 0.5); // Slowly move the grid to the left
     }, 1000); // Update every second
 
     return () => clearInterval(interval); // Cleanup on component unmount
   }, []);
 
   useEffect(() => {
-    // Apply the horizontal and vertical offset dynamically
-    document.documentElement.style.setProperty("--x-offset", `${offsetX}px`);
-    document.documentElement.style.setProperty("--y-offset", `${offsetY}px`);
-  }, [offsetX, offsetY]);
+    // Apply the horizontal camera offset dynamically for the grid
+    document.documentElement.style.setProperty("--camera-x", `${cameraX}px`);
+    document.documentElement.style.setProperty("--camera-y", `${cameraY}px`);
+  }, [cameraX, cameraY]);
 
   return (
     <div
@@ -62,13 +66,19 @@ function App() {
     >
       <h1 className="title">tabul.app</h1>
       <div className="grid-container">
-        <div className="grid"></div>
+        <div
+          className="grid"
+          style={{
+            transform: `translateX(${gridX}px)`, // Move the grid slowly to the left
+          }}
+        ></div>
 
         {/* Timeline */}
         <div
           className="timeline"
           style={{
-            left: `calc(50% + ${timelineOffset + offsetX}px)`, // Timeline moves with the grid
+            left: `calc(50% + ${cameraX}px)`, // Move timeline with the camera
+            top: `${timelineY}px`, // Move timeline vertically with mouse drag
           }}
         >
           <div className="blue-line">
