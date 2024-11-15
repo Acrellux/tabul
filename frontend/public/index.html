@@ -4,23 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>tabul.app</title>
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.ico">
-  <!-- Link to styles -->
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/style.css"> <!-- Points to your styles in the build -->
 </head>
 <body>
-  I added the app root sooooooo...
-  <!-- Root element for React app -->
-  <div id="root">
-    <!-- Fallback message -->
-    <noscript>
-      <h1>tabul.app</h1>
-      <p>It seems JavaScript is disabled in your browser. Please enable JavaScript to view the full application.</p>
-    </noscript>
-  </div>
+  <!-- React App Mount Point -->
+  <div id="root"></div>
 
-  <!-- Link to React's JS files -->
-  <script src="index.js"></script>
+  <!-- Fallback for No-JavaScript Users -->
+  <noscript>
+    <h1>tabul.app</h1>
+    <p>This app requires JavaScript to function. Please enable JavaScript in your browser.</p>
+  </noscript>
 </body>
 </html>
