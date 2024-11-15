@@ -41,7 +41,7 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(Date.now());
-      setTimelineOffset((prev) => prev - 0.05); // Slowly move the timeline left
+      setTimelineOffset((prev) => prev - 0.5); // Slowly move the timeline left
     }, 1000); // Update every second
 
     return () => clearInterval(interval); // Cleanup on component unmount
@@ -63,18 +63,18 @@ function App() {
       <h1 className="title">tabul.app</h1>
       <div className="grid-container">
         <div className="grid"></div>
-      </div>
 
-      {/* Timeline */}
-      <div
-        className="timeline"
-        style={{
-          left: `calc(50% + ${timelineOffset}px)`, // Center the timeline and move it
-        }}
-      >
-        <div className="blue-line">
-          <div className="current-time-circle"></div>
-          <div className="line"></div>
+        {/* Timeline */}
+        <div
+          className="timeline"
+          style={{
+            left: `calc(50% + ${timelineOffset + offsetX}px)`, // Timeline moves with the grid
+          }}
+        >
+          <div className="blue-line">
+            <div className="current-time-circle"></div>
+            <div className="line"></div>
+          </div>
         </div>
       </div>
     </div>
