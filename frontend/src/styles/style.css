@@ -33,8 +33,8 @@ body, html {
 
 /* Grid Container */
 .grid-container {
-  width: 80vw;  /* Larger box */
-  height: 80vh; /* Larger box */
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
   border: 5px solid cyan; /* Rounded border */
   border-radius: 15px;
   overflow: hidden;
@@ -44,10 +44,10 @@ body, html {
 
 /* Grid */
 .grid {
-  width: 10000px; /* Infinite width for horizontal scrolling */
-  height: 10000px; /* Infinite height for vertical scrolling */
+  width: 100000px; /* Large enough to create the illusion of infinity */
+  height: 100000px; /* Large enough to create the illusion of infinity */
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   background-size: 50px 50px; /* Grid cell size */
   background-color: #f0f0f0; /* Grayish background */
   background-image: linear-gradient(to right, #d3d3d3 1px, transparent 1px),
