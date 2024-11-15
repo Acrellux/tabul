@@ -44,8 +44,8 @@ body, html {
 
 /* Grid */
 .grid {
-  width: 100000px; /* Large enough to create the illusion of infinity */
-  height: 100000px; /* Large enough to create the illusion of infinity */
+  width: 100vw; /* Full width of the viewport */
+  height: 100vh; /* Full height of the viewport */
   display: flex;
   flex-wrap: wrap;
   background-size: 50px 50px; /* Grid cell size */
@@ -53,6 +53,7 @@ body, html {
   background-image: linear-gradient(to right, #d3d3d3 1px, transparent 1px),
     linear-gradient(to bottom, #d3d3d3 1px, transparent 1px);
   transform: translateX(var(--camera-x)) translateY(var(--camera-y));
+  background-position: var(--camera-x) var(--camera-y); /* This will allow the grid to move */
 }
 
 /* Timeline Styling */
