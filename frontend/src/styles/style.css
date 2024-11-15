@@ -49,7 +49,49 @@ body, html {
   background-size: 50px 50px; /* Grid cell size */
   background-color: #f0f0f0; /* Grayish background */
   background-image: linear-gradient(to right, #d3d3d3 1px, transparent 1px),
-                    linear-gradient(to bottom, #d3d3d3 1px, transparent 1px);
-  transform: translate(var(--x-offset), var(--y-offset));
-  transition: transform 0.1s linear; /* Smooth snapping */
+    linear-gradient(to bottom, #d3d3d3 1px, transparent 1px);
+  transform: translateX(var(--x-offset)) translateY(var(--y-offset));
+}
+
+/* Timeline Styling */
+.timeline {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
+
+.blue-line {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  justify-content: center;
+}
+
+.current-time-circle {
+  width: 20px;
+  height: 20px;
+  background-color: blue;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.line {
+  width: 100vw; /* Make the line infinitely long */
+  height: 2px;
+  background-color: blue;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* For smoother scrolling */
+.grid-container {
+  overflow: hidden;
+  position: relative;
 }
