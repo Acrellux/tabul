@@ -31,7 +31,7 @@ function App() {
     const deltaX = e.clientX - startX; // Horizontal movement
     const deltaY = e.clientY - startY; // Vertical movement
 
-    // Move the camera (the grid) horizontally
+    // Move the camera (the grid) horizontally when dragging
     setCameraX((prev) => prev + deltaX);
     setCameraY((prev) => prev + deltaY); // Move the timeline vertically with the mouse
 
@@ -45,7 +45,8 @@ function App() {
   // Update the grid movement (time passing) every second
   useEffect(() => {
     const interval = setInterval(() => {
-      setGridX((prev) => prev - 0.5); // Slowly move the grid to the left
+      // Slowly move the grid to the left
+      setGridX((prev) => prev - 0.5);
     }, 1000); // Update every second
 
     return () => clearInterval(interval); // Cleanup on component unmount
@@ -69,7 +70,7 @@ function App() {
         <div
           className="grid"
           style={{
-            transform: `translateX(${gridX}px)`, // Move the grid slowly to the left
+            transform: `translateX(${gridX}px)`, // Move the grid based on cameraX
           }}
         ></div>
 
