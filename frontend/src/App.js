@@ -1,38 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
+import "./styles/style.css";
 
 const App = () => {
+  const [gridOffsetX, setGridOffsetX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.clientX);
+  };
+
+  const handleMouseMove = (e) => {
+    if (isDragging) {
+      const deltaX = e.clientX - startX;
+      setGridOffsetX((prevOffset) => prevOffset + deltaX);
+      setStartX(e.clientX);
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    // Reset to y = 0 if the grid is released
+    setGridOffsetX((prevOffset) => prevOffset);
+  };
+
   return (
-    <div className="container is-fluid">
+    <div>
+      {/* Title */}
       <header className="hero is-primary">
-        <div className="hero-body">
-          <p className="title">
-            Tabul - Your Infinite Organizer
-          </p>
-          <p className="subtitle">
-            Organize tasks, schedule events, and stay on top of your game.
-          </p>
+        <div className="hero-body has-text-centered">
+          <h1 className="title">tabul.app</h1>
         </div>
       </header>
 
-      <section className="section">
-        <div className="columns">
-          <div className="column">
-            <button className="button is-info">Add Event</button>
-          </div>
-          <div className="column">
-            <button className="button is-warning">Create Sticky Note</button>
-          </div>
-          <div className="column">
-            <button className="button is-danger">Taskdeath Mode</button>
-          </div>
+      {/* Grid Container */}
+      <main
+        className="grid-container"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp} // Handle mouse leaving window
+      >
+        {/* Grid */}
+        <div
+          className="grid"
+          style={{ transform: `translateX(${gridOffsetX}px)` }}
+        >
+          {Array.from({ length: 100 }).map((_, i) => (
+            <div className="grid-cell" key={i}></div>
+          ))}
         </div>
-      </section>
-
-      <footer className="footer">
-        <div className="content has-text-centered">
-          <p>© 2024 Tabul. All rights reserved.</p>
-        </div>
-      </footer>
+      </main>
     </div>
   );
 };
