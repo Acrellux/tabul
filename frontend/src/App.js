@@ -3,34 +3,41 @@ import "./styles/style.css";
 
 function App() {
   const [offsetX, setOffsetX] = useState(0); // Track horizontal offset
+  const [offsetY, setOffsetY] = useState(0); // Track vertical offset
   const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0); // Start position of the drag
+  const [startX, setStartX] = useState(0); // Start position of the drag (x)
+  const [startY, setStartY] = useState(0); // Start position of the drag (y)
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setStartX(e.clientX);
+    setStartY(e.clientY);
   };
 
   const handleMouseUp = () => {
     setIsDragging(false);
-    // Reset the y-axis
-    document.documentElement.style.setProperty("--y-offset", "0px");
+    // Reset y-axis to 0 after drag
+    document.documentElement.style.setProperty("--y-offset", `${offsetY}px`);
   };
 
   const handleMouseMove = (e) => {
     if (!isDragging) return;
-    const deltaX = e.clientX - startX; // Horizontal movement
-    setOffsetX((prev) => prev + deltaX);
-    setStartX(e.clientX);
 
-    // Reset y-axis offset
-    document.documentElement.style.setProperty("--y-offset", "0px");
+    const deltaX = e.clientX - startX; // Horizontal movement
+    const deltaY = e.clientY - startY; // Vertical movement
+
+    setOffsetX((prev) => prev + deltaX); // Update horizontal offset
+    setOffsetY((prev) => prev + deltaY); // Update vertical offset
+
+    setStartX(e.clientX); // Update the start position for x
+    setStartY(e.clientY); // Update the start position for y
   };
 
   useEffect(() => {
-    // Apply the horizontal offset dynamically
+    // Apply the horizontal and vertical offset dynamically
     document.documentElement.style.setProperty("--x-offset", `${offsetX}px`);
-  }, [offsetX]);
+    document.documentElement.style.setProperty("--y-offset", `${offsetY}px`);
+  }, [offsetX, offsetY]);
 
   return (
     <div
