@@ -1,2 +1,0 @@
-.infinite-grid{background:linear-gradient(90deg,#f7f7d4 1px,#0000 0),linear-gradient(#f7f7d4 1px,#0000 0);background-size:50px 50px;cursor:grab;height:100vh;overflow:hidden;position:relative;-webkit-user-select:none;user-select:none;width:100vw}.timeline{background:#0000;height:2px;left:50%;position:absolute;top:50%;transform-origin:center;width:100000px}.line.future-line{background-color:gray;top:-1px}.line.future-line,.line.past-line{height:2px;position:absolute;width:100%}.line.past-line{background-color:cyan;top:1px}
-/*# sourceMappingURL=main.3b3b1d61.css.map*/
