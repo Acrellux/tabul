@@ -1,100 +1,134 @@
-/* Reset Styles */
-body, html {
+/* Global Color Scheme */
+:root {
+  --light-yellow: #fdfd96;
+  --gray-brownish: #a8a8a3;
+  --light-red: #f28d8d;
+  --black-text: #000000;
+  --cyan-button: #00bcd4;
+  --cyan-line: #00bcd4;
+  --gray-line: #808080;
+}
+
+/* Global Styles */
+body {
+  background-color: var(--light-yellow);
+  color: var(--black-text);
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  height: 100%;
-  overflow: hidden;
 }
 
-:root {
-  --camera-x: 0px; /* Camera horizontal offset */
-  --camera-y: 0px; /* Camera vertical offset */
-}
-
-/* Container Styling */
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #fef8e7; /* Light yellow */
-  position: relative;
-}
-
-/* Title */
-.title {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #000;
+h1 {
   text-align: center;
-  z-index: 10;
+  margin: 20px 0;
 }
 
-/* Grid Container */
-.grid-container {
-  width: 100vw; /* Full viewport width */
-  height: 100vh; /* Full viewport height */
-  border: 5px solid cyan; /* Rounded border */
-  border-radius: 15px;
-  overflow: hidden;
-  position: relative;
-  z-index: 0; /* Set z-index to be below the timeline */
-}
-
-/* Grid */
-.grid {
-  width: 100vw; /* Full width of the viewport */
-  height: 100vh; /* Full height of the viewport */
+/* Event Input Section */
+.event-input {
   display: flex;
-  flex-wrap: wrap;
-  background-size: 50px 50px; /* Grid cell size */
-  background-color: #f0f0f0; /* Grayish background */
-  background-image: linear-gradient(to right, #d3d3d3 1px, transparent 1px),
-    linear-gradient(to bottom, #d3d3d3 1px, transparent 1px);
-  transform: translateX(var(--camera-x)) translateY(var(--camera-y));
-  background-position: var(--camera-x) var(--camera-y); /* This will allow the grid to move */
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
 }
 
-/* Timeline Styling */
-.timeline {
+.event-input input,
+.event-input button {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.event-input input[type="text"] {
+  width: 250px;
+}
+
+.event-input input[type="datetime-local"] {
+  width: 250px;
+}
+
+.event-input input[type="color"] {
+  width: 40px;
+}
+
+.event-input button {
+  background-color: var(--cyan-button);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.event-input button:hover {
+  background-color: #0097a7;
+}
+
+/* Draggable App Container */
+.App {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  cursor: grab;
+  z-index: 1;
+}
+
+/* Timeline Container */
+.timeline-container {
+  position: absolute;
+  top: 200px;
+  left: 50px;
+  width: 100%;
+  height: 150px;
+  margin-top: 20px;
+  cursor: grab;
+  z-index: 1;
+}
+
+.timeline-line {
   position: absolute;
   top: 50%;
+  left: 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  z-index: 5; /* Set z-index above grid */
-}
-
-.blue-line {
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  justify-content: center;
-}
-
-.current-time-circle {
-  width: 20px;
-  height: 20px;
-  background-color: blue;
-  border-radius: 50%;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.line {
-  width: 100vw; /* Make the line infinitely long */
   height: 2px;
-  background-color: blue;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  background-color: var(--cyan-line);
+  transform: translateY(-50%);
 }
 
-/* For smoother scrolling */
+.timeline-hour-lines {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.hour-line {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: var(--gray-line);
+  opacity: 0.5;
+}
+
+/* Draggable Grid Styles */
 .grid-container {
-  overflow: hidden;
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  width: 100%;
+  height: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(100, 20px);
+  grid-template-rows: repeat(100, 20px);
+  gap: 5px;
   position: relative;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
 }

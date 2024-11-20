@@ -16,7 +16,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "add-domain": "echo tabul.app > build/CNAME",
+    "deploy": "npm run add-domain && gh-pages -d build",
+    "bd": "npm run build && npm run deploy"
   },
   "eslintConfig": {
     "extends": [
@@ -35,6 +37,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "homepage": "https://tabul.app"
+  }
 }
