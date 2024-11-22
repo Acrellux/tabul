@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0;url=tabul.app/" />
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <meta http-equiv="refresh" content="0; URL='/'" />
     <script>
-      // Redirect to the homepage, preserving the path
-      const redirect = window.location.pathname;
-      window.location.replace(`/${redirect}`);
+      // Redirect to the index page and preserve the path
+      const redirectPath = window.location.pathname + window.location.search + window.location.hash;
+      window.location.replace('/' + redirectPath);
     </script>
   </head>
+  <body>
+    <h1>Redirecting...</h1>
+    <p>If you are not redirected, <a href="/">click here</a>.</p>
+  </body>
 </html>
