@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redirecting...</title>
   <script>
-    // Redirect unknown routes to React app
+    // Redirect unknown routes to the React app
     var pathname = window.location.pathname;
-    var basePath = "/"; // Set this to your GitHub Pages base path if needed, e.g., "/tabul.app"
-    if (!pathname.startsWith(basePath)) basePath = "/"; // Prevent duplicate slashes
-    window.location.href = basePath + "?" + pathname.substring(1);
+    var search = window.location.search;
+    var redirectUrl = '/' + pathname.substring(1); // Append path to base
+    if (search) {
+      redirectUrl += search; // Include search params if present
+    }
+    window.location.replace(redirectUrl);
   </script>
 </head>
 <body>
