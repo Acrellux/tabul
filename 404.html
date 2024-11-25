@@ -3,9 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <title>Redirecting...</title>
-    <meta http-equiv="refresh" content="0; URL='/'" />
     <script>
-      // Redirect to the index page and preserve the path
+      // Redirect to the correct route
       const redirectPath = window.location.pathname + window.location.search + window.location.hash;
       window.location.replace('/' + redirectPath);
     </script>
