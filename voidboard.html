@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="refresh" content="0; url=/voidboard" />
+    <script>
+        // Check if the current URL is voidboard.html
+        if (window.location.pathname !== '/voidboard.html') {
+            // Redirect to /voidboard if not on timeline.html
+            window.location.href = '/voidboard';
+        }
+    </script>
 </head>
 <body>
-<p>Redirecting...</p>
 </body>
 </html>

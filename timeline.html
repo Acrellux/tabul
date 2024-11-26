@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="refresh" content="0; url=/timeline" />
+    <script>
+        // Check if the current URL is timeline.html
+        if (window.location.pathname !== '/timeline.html') {
+            // Redirect to /timeline if not on timeline.html
+            window.location.href = '/timeline';
+        }
+    </script>
 </head>
 <body>
-<p>Redirecting...</p>
 </body>
 </html>
