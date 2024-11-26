@@ -10,11 +10,12 @@
     var search = window.location.search;
     var redirectUrl = '/' + pathname.substring(1); // Append path to base
     if (search) {
-    redirectUrl += search; // Include search params if present
+      redirectUrl += search; // Include search params if present
     }
+    
     // Check if the redirect URL is the same as the current URL
     if (window.location.href !== redirectUrl) {
-    window.location.replace(redirectUrl);
+      window.location.replace(redirectUrl);
     }
   </script>
 </head>
